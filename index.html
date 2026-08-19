@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>✨ A Little Surprise For You ✨</title>
+
+
+    <style>
+
+        /* =========================
+           BASIC RESET
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family: "Segoe UI", sans-serif;
+
+            background: #090611;
+
+            color: white;
+
+            min-height: 100vh;
+
+            overflow: hidden;
+
+        }
+
+
+        /* =========================
+           INTRO SCREEN
+        ========================= */
+
+        #intro {
+
+            position: fixed;
+
+            inset: 0;
+
+            background: #090611;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            z-index: 100;
+
+            transition: opacity 1.5s ease;
+
+        }
+
+
+        #intro h1 {
+
+            font-size:
+                clamp(2rem, 8vw, 4rem);
+
+            margin-bottom: 15px;
+
+        }
+
+
+        #intro p {
+
+            color: #d7c9e8;
+
+            margin-bottom: 35px;
+
+            font-size: 1.1rem;
+
+        }
+
+
+        .enter-btn {
+
+            border: none;
+
+            padding: 15px 30px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff7eb3,
+                    #c77dff
+                );
+
+            color: white;
+
+            font-size: 1.05rem;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 25px
+                rgba(255, 126, 179, 0.5);
+
+            transition: .3s;
+
+        }
+
+
+        .enter-btn:hover {
+
+            transform: scale(1.08);
+
+        }
+
+
+        /* =========================
+           PARTY ROOM
+        ========================= */
+
+        #partyRoom {
+
+            min-height: 100vh;
+
+            position: relative;
+
+            display: none;
+
+            overflow: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 100%,
+                    #34203f 0%,
+                    #150d21 45%,
+                    #090611 100%
+                );
+
+        }
+
+
+        /* =========================
+           FAIRY LIGHTS
+        ========================= */
+
+        .lights {
+
+            position: absolute;
+
+            top: 20px;
+
+            left: 0;
+
+            width: 100%;
+
+            display: flex;
+
+            justify-content: space-around;
+
+            z-index: 20;
+
+        }
+
+
+        .light {
+
+            width: 13px;
+
+            height: 13px;
+
+            border-radius: 50%;
+
+            background: #ffd166;
+
+            box-shadow:
+
+                0 0 10px #ffd166,
+
+                0 0 25px #ffd166;
+
+            animation:
+                blink 1.5s infinite alternate;
+
+        }
+
+
+        .light:nth-child(2) {
+            animation-delay: .3s;
+        }
+
+        .light:nth-child(3) {
+            animation-delay: .6s;
+        }
+
+        .light:nth-child(4) {
+            animation-delay: .9s;
+        }
+
+        .light:nth-child(5) {
+            animation-delay: 1.2s;
+        }
+
+        .light:nth-child(6) {
+            animation-delay: .4s;
+        }
+
+        .light:nth-child(7) {
+            animation-delay: .8s;
+        }
+
+
+        @keyframes blink {
+
+            from {
+
+                opacity: .35;
+
+                transform: scale(.8);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: scale(1.15);
+
+            }
+
+        }
+
+
+        /* =========================
+           BALLOONS
+        ========================= */
+
+        .balloon {
+
+            position: absolute;
+
+            font-size: 3rem;
+
+            animation:
+                float 4s ease-in-out infinite;
+
+            z-index: 15;
+
+        }
+
+
+        .b1 {
+
+            left: 7%;
+
+            top: 20%;
+
+        }
+
+
+        .b2 {
+
+            right: 8%;
+
+            top: 24%;
+
+            animation-delay: 1s;
+
+        }
+
+
+        .b3 {
+
+            left: 15%;
+
+            bottom: 18%;
+
+            animation-delay: .5s;
+
+        }
+
+
+        .b4 {
+
+            right: 15%;
+
+            bottom: 20%;
+
+            animation-delay: 1.5s;
+
+        }
+
+
+        @keyframes float {
+
+            0%, 100% {
+
+                transform:
+                    translateY(0)
+                    rotate(-4deg);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-20px)
+                    rotate(4deg);
+
+            }
+
+        }
+
+
+        /* =========================
+           FULL SCREEN CHIBI
+        ========================= */
+
+        .chibi-scene {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            z-index: 5;
+
+            pointer-events: none;
+
+        }
+
+
+        .chibi-background {
+
+            position: absolute;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+            object-position: center;
+
+            z-index: 5;
+
+            opacity: .95;
+
+            animation:
+                chibiFloat 4s ease-in-out infinite;
+
+            filter:
+
+                drop-shadow(
+                    0 0 25px
+                    rgba(255,126,179,.35)
+                );
+
+            pointer-events: none;
+
+        }
+
+
+        @keyframes chibiFloat {
+
+            0%, 100% {
+
+                transform:
+                    translateY(0)
+                    scale(1.02);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-8px)
+                    scale(1.04);
+
+            }
+
+        }
+
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .content {
+
+            position: relative;
+
+            z-index: 30;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding: 30px;
+
+            padding-top: 650px;
+
+            pointer-events: none;
+
+        }
+
+
+        /* =========================
+           CAKE
+        ========================= */
+
+        .cake {
+
+            position: relative;
+
+            z-index: 40;
+
+            font-size: 6rem;
+
+            cursor: pointer;
+
+            pointer-events: auto;
+
+            user-select: none;
+
+            filter:
+
+                drop-shadow(
+                    0 0 20px
+                    rgba(255,150,200,.6)
+                );
+
+            transition: .3s;
+
+        }
+
+
+        .cake:hover {
+
+            transform: scale(1.1);
+
+        }
+
+
+        /* =========================
+           BIRTHDAY WISH
+        ========================= */
+
+        #wishText {
+
+            margin-top: 12px;
+
+            font-size: 1.1rem;
+
+            color: #ffd6f5;
+
+            opacity: 0;
+
+            transform:
+                translateY(10px);
+
+            transition: .6s ease;
+
+        }
+
+
+        #wishText.show {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        /* =========================
+           CAKE ANIMATION
+        ========================= */
+
+        .cake.wished {
+
+            animation:
+                cakeWish .8s ease;
+
+        }
+
+
+        @keyframes cakeWish {
+
+            0% {
+
+                transform:
+                    scale(1);
+
+            }
+
+            40% {
+
+                transform:
+                    scale(1.25)
+                    rotate(-5deg);
+
+            }
+
+            70% {
+
+                transform:
+                    scale(.95)
+                    rotate(5deg);
+
+            }
+
+            100% {
+
+                transform:
+                    scale(1);
+
+            }
+
+        }
+
+
+        /* =========================
+           MEMORY BUTTON
+        ========================= */
+
+        .memory-btn {
+
+            margin-top: 25px;
+
+            padding: 13px 25px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.2);
+
+            border-radius: 25px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            color: white;
+
+            font-size: 1rem;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(10px);
+
+            transition: .3s;
+
+            pointer-events: auto;
+
+            z-index: 40;
+
+        }
+
+
+        .memory-btn:hover {
+
+            transform: scale(1.05);
+
+            background:
+                rgba(255,126,179,.2);
+
+        }
+
+
+        /* =========================
+           SURPRISE MESSAGE
+        ========================= */
+
+        #message {
+
+            margin-top: 25px;
+
+            max-width: 600px;
+
+            padding: 20px 25px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            backdrop-filter: blur(12px);
+
+            opacity: 0;
+
+            transform:
+                translateY(20px);
+
+            transition: .8s;
+
+        }
+
+
+        #message.show {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        #message h2 {
+
+            margin-bottom: 10px;
+
+        }
+
+
+        #message p {
+
+            color: #ded2e5;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =========================
+           CONFETTI
+        ========================= */
+
+        .confetti {
+
+            position: fixed;
+
+            top: -20px;
+
+            font-size: 1.5rem;
+
+            pointer-events: none;
+
+            animation:
+                fall 3s linear forwards;
+
+            z-index: 1000;
+
+        }
+
+
+        @keyframes fall {
+
+            to {
+
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+
+                opacity: 0;
+
+            }
+
+        }
+
+
+        /* =========================
+           MEMORY POPUP
+        ========================= */
+
+        #memoryOverlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(5,2,10,.92);
+
+            backdrop-filter: blur(12px);
+
+            z-index: 200;
+
+            display: none;
+
+            overflow-y: auto;
+
+            padding: 40px 20px;
+
+        }
+
+
+        .memory-container {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            text-align: center;
+
+        }
+
+
+        .memory-container h2 {
+
+            font-size: 2rem;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .memory-container > p {
+
+            color: #d8c8df;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        /* =========================
+           PHOTO GRID
+        ========================= */
+
+        .photo-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(180px, 1fr)
+                );
+
+            gap: 25px;
+
+        }
+
+
+        .photo-card {
+
+            background: #fff;
+
+            padding:
+                10px 10px 25px;
+
+            transform:
+                rotate(-2deg);
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,.4);
+
+            transition: .3s;
+
+        }
+
+
+        .photo-card:nth-child(even) {
+
+            transform:
+                rotate(2deg);
+
+        }
+
+
+        .photo-card:hover {
+
+            transform:
+                rotate(0deg)
+                scale(1.05);
+
+            z-index: 5;
+
+        }
+
+
+        .photo-card img {
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1;
+
+            object-fit: cover;
+
+        }
+
+
+        .photo-card p {
+
+            color: #332438;
+
+            margin: 12px 0 0;
+
+            font-family: cursive;
+
+        }
+
+
+        /* =========================
+           CLOSE MEMORY BUTTON
+        ========================= */
+
+        .close-memory {
+
+            margin-top: 30px;
+
+            padding: 12px 25px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff7eb3,
+                    #c77dff
+                );
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 1rem;
+
+        }
+
+
+        /* =========================
+           MUSIC BUTTON
+        ========================= */
+
+        #musicBtn {
+
+            position: fixed;
+
+            bottom: 25px;
+
+            right: 25px;
+
+            z-index: 500;
+
+            padding: 12px 20px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.2);
+
+            border-radius: 25px;
+
+            background:
+                rgba(20,10,30,.75);
+
+            backdrop-filter: blur(10px);
+
+            color: white;
+
+            font-size: .95rem;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 20px
+                rgba(255,126,179,.25);
+
+            transition: .3s;
+
+        }
+
+
+        #musicBtn:hover {
+
+            transform: scale(1.05);
+
+            background:
+                rgba(255,126,179,.2);
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .cake {
+
+                font-size: 5rem;
+
+            }
+
+
+            .balloon {
+
+                font-size: 2.3rem;
+
+            }
+
+
+            .memory-btn {
+
+                font-size: .95rem;
+
+            }
+
+
+            #message {
+
+                max-width: 90vw;
+
+            }
+
+
+            #musicBtn {
+
+                bottom: 18px;
+
+                right: 18px;
+
+                font-size: .9rem;
+
+                padding: 10px 16px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         INTRO
+    ========================= -->
+
+    <section id="intro">
+
+        <h1>
+            🌙 Psst...
+        </h1>
+
+
+        <p>
+            Someone prepared a little something for you...
+        </p>
+
+
+        <button
+            class="enter-btn"
+            onclick="enterParty()"
+        >
+
+            🎀 Enter the party
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         PARTY ROOM
+    ========================= -->
+
+    <main id="partyRoom">
+
+
+        <!-- FAIRY LIGHTS -->
+
+        <div class="lights">
+
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+
+        </div>
+
+
+
+        <!-- BALLOONS -->
+
+        <div class="balloon b1">🎈</div>
+
+        <div class="balloon b2">🎈</div>
+
+        <div class="balloon b3">🎈</div>
+
+        <div class="balloon b4">🎈</div>
+
+
+
+        <!-- CHIBI BACKGROUND -->
+
+        <div class="chibi-scene">
+
+            <img
+                src="photos/chibi.png"
+                alt="Birthday chibi"
+                class="chibi-background"
+            >
+
+        </div>
+
+
+
+        <!-- MAIN CONTENT -->
+
+        <div class="content">
+
+
+            <!-- CAKE -->
+
+            <div
+                id="birthdayCake"
+                class="cake"
+                onclick="cakeSurprise()"
+                title="Click me!"
+            >
+
+                🎂
+
+            </div>
+
+
+            <!-- WISH -->
+
+            <div id="wishText">
+
+                ✨ Make a wish... ✨
+
+            </div>
+
+
+            <!-- MEMORIES -->
+
+            <button
+                class="memory-btn"
+                onclick="openMemories()"
+            >
+
+                📸 Open our memories
+
+            </button>
+
+
+            <!-- SURPRISE MESSAGE -->
+
+            <div id="message">
+
+                <h2>
+
+                    🎉 SURPRISE!!! 🎉
+
+                </h2>
+
+
+                <p>
+
+                    Happy Birthday! 💖
+
+                    <br><br>
+
+                    I hope this little corner
+                    of the internet makes you
+                    smile even just a little.
+
+                    Because today is YOUR day. 🎀
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         MEMORY WALL
+    ========================= -->
+
+    <div id="memoryOverlay">
+
+
+        <div class="memory-container">
+
+
+            <h2>
+                📸 Little pieces of you 💖
+            </h2>
+
+
+            <p>
+                Because apparently one birthday
+                surprise wasn't enough...
+            </p>
+
+
+
+            <div class="photo-grid">
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo1.jpeg"
+                        alt="Memory 1"
+                    >
+
+                    <p>
+                        Look at youuu 🥹
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo2.jpeg"
+                        alt="Memory 2"
+                    >
+
+                    <p>
+                        This one is adorable 💕
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo3.jpeg"
+                        alt="Memory 3"
+                    >
+
+                    <p>
+                        Okay this picture >>> ✨
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo4.jpeg"
+                        alt="Memory 4"
+                    >
+
+                    <p>
+                        One of my favourites ❤️
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo5.jpeg"
+                        alt="Memory 5"
+                    >
+
+                    <p>
+                        Too cute 🎀
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo6.jpeg"
+                        alt="Memory 6"
+                    >
+
+                    <p>
+                        Another beautiful memory 💖
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo7.jpeg"
+                        alt="Memory 7"
+                    >
+
+                    <p>
+                        How are you this photogenic? 😭
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo8.jpeg"
+                        alt="Memory 8"
+                    >
+
+                    <p>
+                        This deserves a spot here ✨
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo9.jpeg"
+                        alt="Memory 9"
+                    >
+
+                    <p>
+                        Memory unlocked 🔓💕
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo10.jpeg"
+                        alt="Memory 10"
+                    >
+
+                    <p>
+                        Another one for the wall 🥹
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo11.jpeg"
+                        alt="Memory 11"
+                    >
+
+                    <p>
+                        Okay, this one's special ❤️
+                    </p>
+
+                </div>
+
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/photo12.jpeg"
+                        alt="Memory 12"
+                    >
+
+                    <p>
+                        And one more because
+                        I couldn't choose 😂🎀
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="close-memory"
+                onclick="closeMemories()"
+            >
+
+                ← Back to the party
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         MUSIC
+    ========================= -->
+
+    <audio
+        id="birthdayMusic"
+        loop
+    >
+
+        <source
+            src="music/birthday.mp3"
+            type="audio/mpeg"
+        >
+
+        Your browser does not support
+        the audio element.
+
+    </audio>
+
+
+    <button
+        id="musicBtn"
+        onclick="toggleMusic()"
+    >
+
+        🎵 Play Music
+
+    </button>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================
+           ENTER PARTY
+        ========================= */
+
+        function enterParty() {
+
+            const intro =
+                document.getElementById("intro");
+
+            const party =
+                document.getElementById("partyRoom");
+
+
+            intro.style.opacity = "0";
+
+
+            setTimeout(() => {
+
+                intro.style.display = "none";
+
+                party.style.display = "block";
+
+            }, 1500);
+
+        }
+
+
+
+        /* =========================
+           CAKE SURPRISE
+        ========================= */
+
+        function cakeSurprise() {
+
+            const cake =
+                document.getElementById(
+                    "birthdayCake"
+                );
+
+            const wish =
+                document.getElementById(
+                    "wishText"
+                );
+
+            const message =
+                document.getElementById(
+                    "message"
+                );
+
+
+            if (
+                cake.classList.contains("wished")
+            ) {
+
+                return;
+
+            }
+
+
+            cake.classList.add("wished");
+
+
+            wish.classList.add("show");
+
+
+            setTimeout(() => {
+
+                cake.innerText = "🍰";
+
+            }, 700);
+
+
+            setTimeout(() => {
+
+                message.classList.add("show");
+
+            }, 1000);
+
+
+            createConfetti();
+
+        }
+
+
+
+        /* =========================
+           OPEN MEMORIES
+        ========================= */
+
+        function openMemories() {
+
+            const memories =
+                document.getElementById(
+                    "memoryOverlay"
+                );
+
+
+            memories.style.display = "block";
+
+        }
+
+
+
+        /* =========================
+           CLOSE MEMORIES
+        ========================= */
+
+        function closeMemories() {
+
+            const memories =
+                document.getElementById(
+                    "memoryOverlay"
+                );
+
+
+            memories.style.display = "none";
+
+        }
+
+
+
+        /* =========================
+           CONFETTI
+        ========================= */
+
+        function createConfetti() {
+
+            const pieces = [
+
+                "🎉",
+                "✨",
+                "💖",
+                "🎀",
+                "⭐",
+                "💕"
+
+            ];
+
+
+            for (
+                let i = 0;
+                i < 45;
+                i++
+            ) {
+
+
+                const piece =
+                    document.createElement("div");
+
+
+                piece.className =
+                    "confetti";
+
+
+                piece.innerText =
+                    pieces[
+                        Math.floor(
+                            Math.random()
+                            * pieces.length
+                        )
+                    ];
+
+
+                piece.style.left =
+                    Math.random()
+                    * 100 + "vw";
+
+
+                piece.style.animationDuration =
+                    (
+                        2 +
+                        Math.random() * 2
+                    ) + "s";
+
+
+                piece.style.fontSize =
+                    (
+                        1 +
+                        Math.random() * 1.2
+                    ) + "rem";
+
+
+                document.body.appendChild(
+                    piece
+                );
+
+
+                setTimeout(() => {
+
+                    piece.remove();
+
+                }, 4000);
+
+            }
+
+        }
+
+
+
+        /* =========================
+           MUSIC
+        ========================= */
+
+        function toggleMusic() {
+
+            const music =
+                document.getElementById(
+                    "birthdayMusic"
+                );
+
+            const button =
+                document.getElementById(
+                    "musicBtn"
+                );
+
+
+            if (music.paused) {
+
+                music.play()
+                    .then(() => {
+
+                        button.innerText =
+                            "⏸️ Pause Music";
+
+                    })
+                    .catch(() => {
+
+                        button.innerText =
+                            "🎵 Play Music";
+
+                        alert(
+                            "Please click the music button again to start the song."
+                        );
+
+                    });
+
+            } else {
+
+                music.pause();
+
+                button.innerText =
+                    "🎵 Play Music";
+
+            }
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
